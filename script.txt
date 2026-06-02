@@ -45,16 +45,6 @@ Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
 Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" -Name "NV Hostname" -Value $NuevoNombre
 Write-Host "Bypass de registro aplicado con éxito. Por favor, reinicia el equipo." -ForegroundColor Green
 
-SI EN CASO SE QUIERE CONFIGURAR PARA QUE EL RECOLECTOR ENVIE EL DNI EN VEZ DEL HOSTNAME
-Set wshShell = CreateObject("WScript.Shell")
-' 1. Crear el entorno virtual temporal
-Set wshEnv = wshShell.Environment("PROCESS")
-' 2. Forzar el DNI o ID del empleado como Hostname falso
-wshEnv("AW_HOSTNAME") = "71234567"
-' 3. Ejecutar los watchers de forma silenciosa
-wshShell.Run """C:\Program Files (x86)\ActivityWatch\aw-watcher-window\aw-watcher-window.exe""", 0, False
-wshShell.Run """C:\Program Files (x86)\ActivityWatch\aw-watcher-afk\aw-watcher-afk.exe""", 0, False
-
 ------------------------------------------------------------------------------
 RUSTDESK KEY:  wFQqGK3yGiuCV3Y3AGTTlVjHoZnivfLn6qN34ML49qg=
 IP: 161.132.196.212
