@@ -36,4 +36,6 @@
   7.1. Desde PS como administrador, ejecutar: Set-ItemProperty -Path "C:\Program Files (x86)\ActivityWatch" -Name Attributes -Value "Hidden"
 8. ELIMINAR HISTORIAL DE DESCARGAS
 
-
+------------------------------------------------------------------------------
+RUSTDESK KEY:  wFQqGK3yGiuCV3Y3AGTTlVjHoZnivfLn6qN34ML49qg=
+IP: 161.132.196.212
