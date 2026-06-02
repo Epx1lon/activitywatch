@@ -17,14 +17,13 @@
   4.1. Abrir el archivo aw-client.toml desde PS: notepad $env:LOCALAPPDATA\activitywatch\activitywatch\aw-client\aw-client.toml
   4.2. Modificar los siguientes campos: [server] hostname = "actividad.montgroup.pe" port = "80" [client] commit_interval = 10
 5. CREAR RECOLECTOR
-  5.1. Ejecutar win + r y escribir: shell:startup
-  5.2. Crear el archivo recolector.vbs:
+  5.1. Crear el archivo recolector.vbs en la siguiente carpeta: C:\Program Files (x86)\ActivityWatch\:
        Set WshShell = CreateObject("WScript.Shell")
        WshShell.Run """C:\Program Files (x86)\ActivityWatch\aw-watcher-window\aw-watcher-window.exe""", 0, False
        WshShell.Run """C:\Program Files (x86)\ActivityWatch\aw-watcher-afk\aw-watcher-afk.exe""", 0, False
-  5.3. Ejecutar el archivo recolector.vbs dando doble clic o con el comando: wscript.exe .\recolector.vbs
-  5.4. Verificar que los watchers están corriendo: Get-Process aw-watcher-*
-  5.5. Si fuese necesario, se puede detener los watchers con el comando: Stop-Process -Name "aw-watcher*" -Force -ErrorAction SilentlyContinue
+  5.2. Ejecutar win + r y escribir: shell:startup y crear el acceso directo wscript.exe "C:\Program Files (x86)\ActivityWatch\recolector.vbs"
+  5.3. Verificar que los watchers están corriendo: Get-Process aw-watcher-*
+  5.4. Si fuese necesario, se puede detener los watchers con el comando: Stop-Process -Name "aw-watcher*" -Force -ErrorAction SilentlyContinue
 6. RESTRINIGIR LA MODIFICACIÓN DEL ARCHIVO AW-CLIENT.TOML
   6.1. Abrir PS como administrador y ejecutar lo siguiente:
        $ruta = "C:\Users\NombreDelUsuarioEstandar\AppData\Local\activitywatch\activitywatch\aw-client\aw-client.toml"
@@ -40,13 +39,11 @@
 RUSTDESK KEY:  wFQqGK3yGiuCV3Y3AGTTlVjHoZnivfLn6qN34ML49qg=
 IP: 161.132.196.212
 
+POR SI LA PC ESTA UNIDA A UN DOMINIO QUE YA NO EXISTE Y SE DESEA CAMBIAR EL HOSTNAME
 $NuevoNombre = "arodriguez"
-
 # 1. Cambiar la identidad principal del equipo en el Kernel
 Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName" -Name "ComputerName" -Value $NuevoNombre
-
 # 2. Cambiar la identidad a nivel de red (TCP/IP)
 Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" -Name "Hostname" -Value $NuevoNombre
 Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" -Name "NV Hostname" -Value $NuevoNombre
-
 Write-Host "Bypass de registro aplicado con éxito. Por favor, reinicia el equipo." -ForegroundColor Green
