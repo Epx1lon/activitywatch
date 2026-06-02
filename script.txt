@@ -39,3 +39,14 @@
 ------------------------------------------------------------------------------
 RUSTDESK KEY:  wFQqGK3yGiuCV3Y3AGTTlVjHoZnivfLn6qN34ML49qg=
 IP: 161.132.196.212
+
+$NuevoNombre = "arodriguez"
+
+# 1. Cambiar la identidad principal del equipo en el Kernel
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName" -Name "ComputerName" -Value $NuevoNombre
+
+# 2. Cambiar la identidad a nivel de red (TCP/IP)
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" -Name "Hostname" -Value $NuevoNombre
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" -Name "NV Hostname" -Value $NuevoNombre
+
+Write-Host "Bypass de registro aplicado con éxito. Por favor, reinicia el equipo." -ForegroundColor Green
